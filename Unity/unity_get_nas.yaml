@@ -1,0 +1,13 @@
+---
+- collections: dellemc.unity
+
+- hosts: 172.21.51.159
+
+- tasks:
+    - name: Get Details of NAS Server
+      dellemc.unity.dellemc_unity_nasserver:
+        unispherehost: "172.21.51.159"
+        verifycert: "false"
+        nas_server_name: "testnas"
+        state: "present"
+...

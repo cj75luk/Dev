@@ -1,0 +1,10 @@
+---
+- collections: dellemc.unity
+
+- hosts: 172.21.51.159
+
+- tasks:
+- name: Get Volume details
+  dellemc.unity.dellemc_unity_volume
+
+...
