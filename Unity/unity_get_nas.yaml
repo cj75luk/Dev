@@ -4,7 +4,12 @@
 - hosts: 172.21.51.159
 
 - tasks:
-- name: Get Volume details
-  dellemc.unity.dellemc_unity_volume
-
+    - name: Get Details of NAS Server
+      dellemc.unity.dellemc_unity_nasserver:
+        unispherehost: "172.21.51.159"
+        username: "service"
+        password: "Test"
+        verifycert: "false"
+        nas_server_name: "testnas"
+        state: "present"
 ...
