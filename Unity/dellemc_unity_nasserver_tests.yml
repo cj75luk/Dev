@@ -1,0 +1,57 @@
+---
+- name: NAS Server Module Operations in Unity
+  hosts: localhost
+  connection: local
+  collections:
+    - dellemc.unity
+
+  vars:
+    unispherehost: '172.21.51.159'
+    port: '22'
+    verifycert: False
+    username: 'service'
+    password: 'Sidepath1$'
+    nas_server_name: "testfs"
+    nas_server_new_name: "testfs1"
+
+  tasks:
+
+  - name: Get NAS Server Details using Name
+    dellemc_unity_nasserver:
+      unispherehost: "{{unispherehost}}"
+      username: "{{username}}"
+      password: "{{password}}"
+      verifycert: "{{verifycert}}"
+      nas_server_name: "{{nas_server_name}}"
+      state: "present"
+
+  - name: Rename NAS Server to new Name
+    dellemc_unity_nasserver:
+      unispherehost: "{{unispherehost}}"
+      username: "{{username}}"
+      password: "{{password}}"
+      verifycert: "{{verifycert}}"
+      nas_server_name: "{{nas_server_name}}"
+      nas_server_new_name: "{{nas_server_new_name}}"
+      state: "present"
+
+  - name: Rename NAS Server to Old Name
+    dellemc_unity_nasserver:
+      unispherehost: "{{unispherehost}}"
+      username: "{{username}}"
+      password: "{{password}}"
+      verifycert: "{{verifycert}}"
+      nas_server_name: "{{nas_server_new_name}}"
+      nas_server_new_name: "{{nas_server_name}}"
+      state: "present"
+
+  - name: Modify Details of NAS Server
+    dellemc_unity_nasserver:
+      unispherehost: "{{unispherehost}}"
+      username: "{{username}}"
+      password: "{{password}}"
+      verifycert: "{{verifycert}}"
+      nas_server_name: "{{nas_server_name}}"
+      current_unix_directory_service: "NONE"
+      is_packet_reflect_enabled: True
+      state: "present"
